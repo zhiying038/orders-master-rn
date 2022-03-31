@@ -1,3 +1,9 @@
+const {getDefaultConfig} = require('metro-config');
+
+const {
+  resolver: {sourceExts},
+} = getDefaultConfig.getDefaultValues();
+
 /**
  * Metro configuration for React Native
  * https://github.com/facebook/react-native
@@ -13,5 +19,8 @@ module.exports = {
         inlineRequires: true,
       },
     }),
+  },
+  resolver: {
+    sourceExts: [...sourceExts, 'cjs'],
   },
 };

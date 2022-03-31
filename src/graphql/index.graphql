@@ -1,0 +1,12 @@
+fragment ItemInfo on Item {
+  id
+  code
+  price
+  currency
+}
+
+query getItems($searchText: String) {
+  getItems(searchText: $searchText) {
+    ...ItemInfo
+  }
+}

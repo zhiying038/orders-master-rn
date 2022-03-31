@@ -57,17 +57,17 @@ const Section: React.FC<{
   );
 };
 
-const client = new ApolloClient({
-  uri: Config.GRAPHQL_URI,
-  cache: new InMemoryCache(),
-});
-
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const client = new ApolloClient({
+    uri: Config.GRAPHQL_URI,
+    cache: new InMemoryCache(),
+  });
 
   return (
     <ApolloProvider client={client}>

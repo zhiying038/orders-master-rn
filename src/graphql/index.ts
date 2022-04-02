@@ -2,9 +2,15 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -84,31 +90,25 @@ export type Mutation = {
   updateOrder: Order;
 };
 
-
 export type MutationCreateItemArgs = {
   input: CreateItemInput;
 };
-
 
 export type MutationCreateOrderArgs = {
   input: PlaceOrderInput;
 };
 
-
 export type MutationDeleteItemsArgs = {
   codes: Array<Scalars['String']>;
 };
-
 
 export type MutationGenerateSignedUrlArgs = {
   input: CreateUploadInput;
 };
 
-
 export type MutationUpdateItemArgs = {
   input: UpdateItemInput;
 };
-
 
 export type MutationUpdateOrderArgs = {
   input: UpdateOrderInput;
@@ -164,21 +164,17 @@ export type Query = {
   getPaginatedOrders: Orders;
 };
 
-
 export type QueryCalculateTotalPriceArgs = {
   input: PlaceOrderInput;
 };
-
 
 export type QueryGetItemsArgs = {
   searchText?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetOrderByIdArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetPaginatedOrdersArgs = {
   filter?: InputMaybe<FilterOrderInput>;
@@ -192,7 +188,7 @@ export type SignedUrl = {
 
 export enum SortOrder {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type UpdateItemInput = {
@@ -211,33 +207,48 @@ export type UpdateOrderInput = {
 };
 
 export enum UploadPurpose {
-  Image = 'IMAGE'
+  Image = 'IMAGE',
 }
 
-export type ItemInfoFragment = { __typename?: 'Item', id: string, code: string, price: number, currency: string };
+export type ItemInfoFragment = {
+  __typename?: 'Item';
+  id: string;
+  code: string;
+  price: number;
+  currency: string;
+};
 
 export type GetItemsQueryVariables = Exact<{
   searchText?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type GetItemsQuery = { __typename?: 'Query', getItems: Array<{ __typename?: 'Item', id: string, code: string, price: number, currency: string }> };
+export type GetItemsQuery = {
+  __typename?: 'Query';
+  getItems: Array<{
+    __typename?: 'Item';
+    id: string;
+    code: string;
+    price: number;
+    currency: string;
+  }>;
+};
 
 export const ItemInfoFragmentDoc = gql`
-    fragment ItemInfo on Item {
-  id
-  code
-  price
-  currency
-}
-    `;
-export const GetItemsDocument = gql`
-    query getItems($searchText: String) {
-  getItems(searchText: $searchText) {
-    ...ItemInfo
+  fragment ItemInfo on Item {
+    id
+    code
+    price
+    currency
   }
-}
-    ${ItemInfoFragmentDoc}`;
+`;
+export const GetItemsDocument = gql`
+  query getItems($searchText: String) {
+    getItems(searchText: $searchText) {
+      ...ItemInfo
+    }
+  }
+  ${ItemInfoFragmentDoc}
+`;
 
 /**
  * __useGetItemsQuery__
@@ -255,14 +266,32 @@ export const GetItemsDocument = gql`
  *   },
  * });
  */
-export function useGetItemsQuery(baseOptions?: Apollo.QueryHookOptions<GetItemsQuery, GetItemsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetItemsQuery, GetItemsQueryVariables>(GetItemsDocument, options);
-      }
-export function useGetItemsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetItemsQuery, GetItemsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetItemsQuery, GetItemsQueryVariables>(GetItemsDocument, options);
-        }
+export function useGetItemsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetItemsQuery, GetItemsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetItemsQuery, GetItemsQueryVariables>(
+    GetItemsDocument,
+    options,
+  );
+}
+export function useGetItemsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetItemsQuery,
+    GetItemsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetItemsQuery, GetItemsQueryVariables>(
+    GetItemsDocument,
+    options,
+  );
+}
 export type GetItemsQueryHookResult = ReturnType<typeof useGetItemsQuery>;
-export type GetItemsLazyQueryHookResult = ReturnType<typeof useGetItemsLazyQuery>;
-export type GetItemsQueryResult = Apollo.QueryResult<GetItemsQuery, GetItemsQueryVariables>;
+export type GetItemsLazyQueryHookResult = ReturnType<
+  typeof useGetItemsLazyQuery
+>;
+export type GetItemsQueryResult = Apollo.QueryResult<
+  GetItemsQuery,
+  GetItemsQueryVariables
+>;

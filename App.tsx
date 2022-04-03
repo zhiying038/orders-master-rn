@@ -10,7 +10,9 @@
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import Config from 'react-native-config';
+import FlashMessage from 'react-native-flash-message';
 import {
   initialWindowMetrics,
   SafeAreaProvider,
@@ -27,9 +29,16 @@ const App = () => {
     <ApolloProvider client={client}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <RootNavigator />
+        <FlashMessage position="top" titleStyle={styles.message} />
       </SafeAreaProvider>
     </ApolloProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  message: {
+    textAlign: 'center',
+  },
+});
 
 export default App;

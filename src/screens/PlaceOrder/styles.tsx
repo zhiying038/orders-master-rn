@@ -34,6 +34,31 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
   },
+  quantityContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  quantity: {
+    padding: 5,
+  },
+  divider: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: 10,
+  },
+  checkoutBtn: {
+    backgroundColor: '#ffe400',
+    padding: 15,
+    borderRadius: 8,
+  },
+  checkoutText: {
+    textAlign: 'center',
+    fontSize: 15,
+    textTransform: 'uppercase',
+  },
+  footer: {
+    marginBottom: 20,
+  },
 });
 
 export default styles;

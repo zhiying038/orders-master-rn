@@ -17,7 +17,9 @@ import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
+import { TailwindProvider } from 'tailwind-rn/dist';
 import { RootNavigator } from './src/navigations';
+import utilities from './tailwind.json';
 
 const App = () => {
   const isAndroid = Platform.OS === 'android';
@@ -31,10 +33,12 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <RootNavigator />
-        <FlashMessage position="top" titleStyle={styles.message} />
-      </SafeAreaProvider>
+      <TailwindProvider utilities={utilities}>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <RootNavigator />
+          <FlashMessage position="top" titleStyle={styles.message} />
+        </SafeAreaProvider>
+      </TailwindProvider>
     </ApolloProvider>
   );
 };

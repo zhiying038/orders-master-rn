@@ -2,24 +2,26 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useTailwind } from 'tailwind-rn';
 import { AppParamList } from '../../navigations';
-import styles from './styles';
 
 const LandingScreen: FC<StackScreenProps<AppParamList, 'landing'>> = ({
   navigation,
 }) => {
+  const tailwind = useTailwind();
+
   return (
-    <View style={styles.container}>
+    <View style={tailwind('flex flex-1 justify-center p-3')}>
       <TouchableOpacity
-        style={styles.button}
+        style={tailwind('mb-5 bg-primary rounded-md')}
         onPress={() => navigation.navigate('placeOrder')}>
-        <Text style={styles.buttonText}>Place Order</Text>
+        <Text style={tailwind('uppercase text-center p-5')}>Place Order</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
+        style={tailwind('mb-5 bg-primary rounded-md')}
         onPress={() => navigation.navigate('viewOrders')}>
-        <Text style={styles.buttonText}>View Orders</Text>
+        <Text style={tailwind('uppercase text-center p-5')}>View Orders</Text>
       </TouchableOpacity>
     </View>
   );

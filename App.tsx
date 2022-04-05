@@ -23,7 +23,9 @@ const App = () => {
   const isAndroid = Platform.OS === 'android';
 
   const client = new ApolloClient({
-    uri: isAndroid ? 'http://192.168.68.112:3000/graphql' : Config.GRAPHQL_URI,
+    uri: isAndroid
+      ? `http://${Config.IP_ADDR}:${Config.BACKEND_PORT}/graphql`
+      : Config.GRAPHQL_URI,
     cache: new InMemoryCache(),
   });
 

@@ -16,7 +16,9 @@ const LandingScreen: FC<StackScreenProps<AppParamList, 'landing'>> = ({
         <Text style={styles.buttonText}>Place Order</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('viewOrders')}>
         <Text style={styles.buttonText}>View Orders</Text>
       </TouchableOpacity>
     </View>

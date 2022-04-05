@@ -22,7 +22,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 20,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+  },
+  btnContainer: {
+    flex: 1,
   },
   pagingBtn: {
     backgroundColor: '#ffe400',

@@ -53,19 +53,23 @@ const ViewOrdersScreen: FC<
   const renderFooter = () => {
     return (
       <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.pagingBtn}
-          disabled={page === 1}
-          onPress={() => setPage(page - 1)}>
-          <Text style={styles.pagingText}>Previous</Text>
-        </TouchableOpacity>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={styles.pagingBtn}
+            disabled={page === 1}
+            onPress={() => setPage(page - 1)}>
+            <Text style={styles.pagingText}>Previous</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          style={styles.pagingBtn}
-          disabled={!hasMore}
-          onPress={() => setPage(page + 1)}>
-          <Text style={styles.pagingText}>Next</Text>
-        </TouchableOpacity>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={styles.pagingBtn}
+            disabled={!hasMore}
+            onPress={() => setPage(page + 1)}>
+            <Text style={styles.pagingText}>Next</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };

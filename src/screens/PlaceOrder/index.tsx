@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Header from '../../components/Header';
 import OrderSummary from '../../components/OrderSummary';
 import {
   ItemInfoFragment,
@@ -132,14 +133,6 @@ const PlaceOrderScreen = () => {
     );
   };
 
-  const renderHeaderView = () => {
-    return (
-      <View>
-        <Text style={styles.headerText}>Place Order</Text>
-      </View>
-    );
-  };
-
   const renderFooterView = () => {
     return (
       <View style={styles.footer}>
@@ -172,7 +165,7 @@ const PlaceOrderScreen = () => {
         data={data?.getItems}
         style={styles.container}
         keyExtractor={item => item.code}
-        ListHeaderComponent={renderHeaderView()}
+        ListHeaderComponent={<Header title="Place Order" />}
         ListFooterComponent={renderFooterView()}
         renderItem={({ item }) => renderItem(item)}
       />

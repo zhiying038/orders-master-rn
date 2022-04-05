@@ -4,6 +4,7 @@ import reduce from 'lodash/reduce';
 import React, { FC, useEffect, useState } from 'react';
 import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Header from '../../components/Header';
 import { OrderInfoFragment, useGetPaginatedOrdersQuery } from '../../graphql';
 import { AppParamList } from '../../navigations';
 import styles from './styles';
@@ -25,14 +26,6 @@ const ViewOrdersScreen: FC<
       options: { page, limit: 10 },
     });
   }, [page]);
-
-  const renderHeaderView = () => {
-    return (
-      <View>
-        <Text style={styles.headerText}>View Orders</Text>
-      </View>
-    );
-  };
 
   const renderItem = (order: OrderInfoFragment) => {
     return (
@@ -78,7 +71,7 @@ const ViewOrdersScreen: FC<
     <SafeAreaView>
       <FlatList
         keyExtractor={item => item?.createdAt}
-        ListHeaderComponent={renderHeaderView()}
+        ListHeaderComponent={<Header title="View Orders" />}
         ListFooterComponent={renderFooter()}
         renderItem={({ item }) => renderItem(item)}
         data={data?.getPaginatedOrders?.items ?? []}

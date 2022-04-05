@@ -25,12 +25,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  headerText: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: 25,
-    marginBottom: 15,
-  },
   container: {
     padding: 15,
   },

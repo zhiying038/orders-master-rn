@@ -10,7 +10,7 @@
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import Config from 'react-native-config';
 import FlashMessage from 'react-native-flash-message';
 import {
@@ -20,8 +20,12 @@ import {
 import { RootNavigator } from './src/navigations';
 
 const App = () => {
+  const isAndroid = Platform.OS === 'android';
+
   const client = new ApolloClient({
-    uri: Config.GRAPHQL_URI,
+    uri: isAndroid
+      ? `http://${Config.IP_ADDR}:${Config.BACKEND_PORT}/graphql`
+      : Config.GRAPHQL_URI,
     cache: new InMemoryCache(),
   });
 

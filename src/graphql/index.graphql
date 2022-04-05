@@ -1,12 +1,19 @@
+# =============
+# ITEM
+# =============
 fragment ItemInfo on Item {
   code
-  price
   name
+  description
+  price
   currency
+  images {
+    ...ItemImageInfo
+  }
 }
 
-query getItems {
-  getItems {
+query getItems($searchText: String) {
+  getItems(searchText: $searchText) {
     ...ItemInfo
   }
 }
@@ -23,44 +30,38 @@ mutation updateItem($input: UpdateItemInput!) {
   }
 }
 
-mutation deleteItems($codes: [String!]!) {
-  deleteItems(codes: $codes)
+# =============
+# ITEM IMAGE
+# =============
+fragment ItemImageInfo on ItemImage {
+  id
+  link
+  alt
 }
 
-# ==========
+# =============
 # ORDER
-# ==========
+# =============
 fragment OrderInfo on Order {
   id
+  referenceNumber
   totalPrice
   createdAt
+  status
+  placedAt
   orderDetails {
     ...OrderDetailInfo
   }
 }
 
-fragment OrdersInfo on Orders {
+fragment PaginatedOrderInfo on Orders {
+  items {
+    ...OrderInfo
+  }
   total
   hasMore
   page
   pages
-  items {
-    ...OrderInfo
-  }
-}
-
-fragment OrderDetailInfo on OrderDetail {
-  id
-  quantity
-  item {
-    ...ItemInfo
-  }
-}
-
-query getOrders($filter: FilterOrderInput) {
-  getOrders(filter: $filter) {
-    ...OrderInfo
-  }
 }
 
 query getPaginatedOrders(
@@ -68,25 +69,54 @@ query getPaginatedOrders(
   $filter: FilterOrderInput
 ) {
   getPaginatedOrders(options: $options, filter: $filter) {
-    ...OrdersInfo
+    ...PaginatedOrderInfo
   }
 }
 
-query getOrderById($id: Int!) {
+query getOrderById($id: String!) {
   getOrderById(id: $id) {
     ...OrderInfo
   }
 }
 
-query calculateTotalPrice($input: [CreateOrderDetailInput!]!) {
+query calculateTotalPrice($input: PlaceOrderInput!) {
   calculateTotalPrice(input: $input) {
     currency
     price
   }
 }
 
-mutation createOrder($input: [CreateOrderDetailInput!]!) {
+query getNextReferenceNumber {
+  getNextReferenceNumber
+}
+
+mutation createOrder($input: PlaceOrderInput!) {
   createOrder(input: $input) {
     ...OrderInfo
+  }
+}
+
+# =============
+# ORDER DETAILS
+# =============
+fragment OrderDetailInfo on OrderDetail {
+  id
+  quantity
+  unitPrice
+  item {
+    ...ItemInfo
+  }
+}
+
+# =============
+# SIGNED URL
+# =============
+fragment SignedUrlInfo on SignedUrl {
+  signedUrl
+}
+
+mutation generateSignedUrl($input: CreateUploadInput!) {
+  generateSignedUrl(input: $input) {
+    ...SignedUrlInfo
   }
 }

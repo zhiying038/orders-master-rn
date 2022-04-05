@@ -9,11 +9,6 @@
 			"marginBottom": 8
 		}
 	},
-	"block": {
-		"style": {
-			"display": "block"
-		}
-	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -22,11 +17,6 @@
 	"contents": {
 		"style": {
 			"display": "contents"
-		}
-	},
-	"h-full": {
-		"style": {
-			"height": "100%"
 		}
 	},
 	"h-7": {
@@ -49,6 +39,11 @@
 			"height": 56
 		}
 	},
+	"h-full": {
+		"style": {
+			"height": "100%"
+		}
+	},
 	"min-h-full": {
 		"style": {
 			"minHeight": "100%"
@@ -59,13 +54,6 @@
 			"flexGrow": 1,
 			"flexShrink": 1,
 			"flexBasis": "0%"
-		}
-	},
-	"flex-auto": {
-		"style": {
-			"flexGrow": 1,
-			"flexShrink": 1,
-			"flexBasis": "auto"
 		}
 	},
 	"grow": {
@@ -98,14 +86,6 @@
 			"justifyContent": "center"
 		}
 	},
-	"rounded-md": {
-		"style": {
-			"borderTopLeftRadius": 6,
-			"borderTopRightRadius": 6,
-			"borderBottomRightRadius": 6,
-			"borderBottomLeftRadius": 6
-		}
-	},
 	"rounded": {
 		"style": {
 			"borderTopLeftRadius": 4,
@@ -136,12 +116,9 @@
 			"backgroundColor": "rgb(250 204 21 / var(--tw-bg-opacity))"
 		}
 	},
-	"p-3": {
+	"bg-transparent": {
 		"style": {
-			"paddingTop": 12,
-			"paddingRight": 12,
-			"paddingBottom": 12,
-			"paddingLeft": 12
+			"backgroundColor": "transparent"
 		}
 	},
 	"p-4": {
@@ -160,14 +137,6 @@
 			"paddingLeft": 20
 		}
 	},
-	"p-2": {
-		"style": {
-			"paddingTop": 8,
-			"paddingRight": 8,
-			"paddingBottom": 8,
-			"paddingLeft": 8
-		}
-	},
 	"px-2": {
 		"style": {
 			"paddingLeft": 8,
@@ -180,16 +149,21 @@
 			"paddingRight": 16
 		}
 	},
+	"px-6": {
+		"style": {
+			"paddingLeft": 24,
+			"paddingRight": 24
+		}
+	},
 	"px-8": {
 		"style": {
 			"paddingLeft": 32,
 			"paddingRight": 32
 		}
 	},
-	"px-6": {
+	"pl-0": {
 		"style": {
-			"paddingLeft": 24,
-			"paddingRight": 24
+			"paddingLeft": 0
 		}
 	},
 	"text-center": {
@@ -197,10 +171,33 @@
 			"textAlign": "center"
 		}
 	},
-	"text-sm": {
+	"text-lg": {
 		"style": {
-			"fontSize": 14,
-			"lineHeight": 20
+			"fontSize": 18,
+			"lineHeight": 28
+		}
+	},
+	"text-base": {
+		"style": {
+			"fontSize": 16,
+			"lineHeight": 24
+		}
+	},
+	"text-2xl": {
+		"style": {
+			"fontSize": 24,
+			"lineHeight": 32
+		}
+	},
+	"text-xl": {
+		"style": {
+			"fontSize": 20,
+			"lineHeight": 28
+		}
+	},
+	"font-semibold": {
+		"style": {
+			"fontWeight": "600"
 		}
 	},
 	"uppercase": {

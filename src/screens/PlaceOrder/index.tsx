@@ -1,7 +1,8 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import filter from 'lodash/filter';
 import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -20,10 +21,13 @@ import {
   useCreateOrderMutation,
   useGetItemsQuery,
 } from '../../graphql';
+import { AppParamList } from '../../navigations';
 import { CartProps } from './props';
 import styles from './styles';
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen: FC<StackScreenProps<AppParamList, 'placeOrder'>> = ({
+  navigation,
+}) => {
   const { data } = useGetItemsQuery();
   const [calculateTotal, { data: priceData }] =
     useCalculateTotalPriceLazyQuery();
@@ -165,7 +169,15 @@ const PlaceOrderScreen = () => {
         data={data?.getItems}
         style={styles.container}
         keyExtractor={item => item.code}
-        ListHeaderComponent={<Header title="Place Order" />}
+        ListHeaderComponent={
+          <Header
+            enableBack
+            onPressBack={() => navigation.navigate('landing')}
+            title="Place Order"
+            textClassname="text-xl"
+            className="mb-5"
+          />
+        }
         ListFooterComponent={renderFooterView()}
         renderItem={({ item }) => renderItem(item)}
       />

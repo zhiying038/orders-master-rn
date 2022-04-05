@@ -180,4 +180,5 @@ const PlaceOrderScreen = () => {
   );
 };
 
+export const PlaceOrder = PlaceOrderScreen;
 export default PlaceOrderScreen;

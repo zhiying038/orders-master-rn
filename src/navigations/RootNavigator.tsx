@@ -6,11 +6,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { AppNavigator } from './AppNavigator';
 
-export type AppParamList = {
+export type RootParamList = {
   appStack: undefined;
 };
 
-const Stack = createStackNavigator<AppParamList>();
+const Stack = createStackNavigator<RootParamList>();
 
 const RootStack = () => {
   return (

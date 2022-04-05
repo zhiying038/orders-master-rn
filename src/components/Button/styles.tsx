@@ -9,7 +9,6 @@ export const useStyles = (props: Props) => {
     buttonStyle,
     textStyle,
     rounded,
-    block = false,
     center,
     loading,
     disabled,

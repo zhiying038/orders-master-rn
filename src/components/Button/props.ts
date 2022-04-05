@@ -3,7 +3,6 @@ import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 export type Props = {
   text?: string;
   center?: boolean;
-  block?: boolean;
   rounded?: boolean;
   loading?: boolean;
   disabled?: boolean;

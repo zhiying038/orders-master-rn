@@ -2,6 +2,7 @@
 # ITEM
 # =============
 fragment ItemInfo on Item {
+  id
   code
   name
   description
@@ -9,6 +10,12 @@ fragment ItemInfo on Item {
   currency
   images {
     ...ItemImageInfo
+  }
+}
+
+query getItemById($id: String!) {
+  getItemById(id: $id) {
+    ...ItemInfo
   }
 }
 

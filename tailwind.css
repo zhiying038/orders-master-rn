@@ -1,9 +1,51 @@
+.absolute {
+  position: absolute
+}
+
+.bottom-2 {
+  bottom: 0.5rem
+}
+
+.left-2 {
+  left: 0.5rem
+}
+
+.right-2 {
+  right: 0.5rem
+}
+
+.top-4 {
+  top: 1rem
+}
+
+.right-4 {
+  right: 1rem
+}
+
+.z-10 {
+  z-index: 10
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem
+}
+
 .mb-5 {
   margin-bottom: 1.25rem
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem
+.ml-3 {
+  margin-left: 0.75rem
+}
+
+.mt-2 {
+  margin-top: 0.5rem
 }
 
 .flex {
@@ -12,6 +54,10 @@
 
 .contents {
   display: contents
+}
+
+.h-full {
+  height: 100%
 }
 
 .h-7 {
@@ -30,12 +76,20 @@
   height: 3.5rem
 }
 
-.h-full {
-  height: 100%
+.h-24 {
+  height: 6rem
 }
 
 .min-h-full {
   min-height: 100%
+}
+
+.w-full {
+  width: 100%
+}
+
+.w-24 {
+  width: 6rem
 }
 
 .flex-1 {
@@ -48,6 +102,14 @@
 
 .flex-row {
   flex-direction: row
+}
+
+.flex-col {
+  flex-direction: column
+}
+
+.flex-wrap {
+  flex-wrap: wrap
 }
 
 .items-center {
@@ -66,6 +128,10 @@
   justify-content: center
 }
 
+.overflow-y-scroll {
+  overflow-y: scroll
+}
+
 .rounded {
   border-radius: 0.25rem
 }
@@ -78,6 +144,27 @@
   border-radius: 9999px
 }
 
+.rounded-xl {
+  border-radius: 0.75rem
+}
+
+.border-2 {
+  border-width: 2px
+}
+
+.border {
+  border-width: 1px
+}
+
+.border-b {
+  border-bottom-width: 1px
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity))
+}
+
 .bg-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity))
@@ -87,12 +174,36 @@
   background-color: transparent
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity))
+}
+
 .p-4 {
   padding: 1rem
 }
 
 .p-5 {
   padding: 1.25rem
+}
+
+.p-2 {
+  padding: 0.5rem
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem
 }
 
 .px-2 {
@@ -115,6 +226,11 @@
   padding-right: 2rem
 }
 
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem
+}
+
 .pl-0 {
   padding-left: 0px
 }
@@ -123,8 +239,8 @@
   text-align: center
 }
 
-.text-lg {
-  font-size: 1.125rem;
+.text-xl {
+  font-size: 1.25rem;
   line-height: 1.75rem
 }
 
@@ -133,22 +249,104 @@
   line-height: 1.5rem
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1
+}
+
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1
+}
+
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1
 }
 
 .font-semibold {
   font-weight: 600
 }
 
+.font-thin {
+  font-weight: 100
+}
+
+.font-extralight {
+  font-weight: 200
+}
+
+.font-light {
+  font-weight: 300
+}
+
+.font-normal {
+  font-weight: 400
+}
+
+.font-medium {
+  font-weight: 500
+}
+
+.font-bold {
+  font-weight: 700
+}
+
+.font-extrabold {
+  font-weight: 800
+}
+
+.font-black {
+  font-weight: 900
+}
+
 .uppercase {
   text-transform: uppercase
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity))
 }
 
 .opacity-60 {

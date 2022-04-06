@@ -158,6 +158,7 @@ export type Price = {
 export type Query = {
   __typename?: 'Query';
   calculateTotalPrice: Price;
+  getItemById: Item;
   getItems: Array<Item>;
   getNextReferenceNumber: Scalars['String'];
   getOrderById: Order;
@@ -167,6 +168,11 @@ export type Query = {
 
 export type QueryCalculateTotalPriceArgs = {
   input: PlaceOrderInput;
+};
+
+
+export type QueryGetItemByIdArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -214,34 +220,41 @@ export enum UploadPurpose {
   Image = 'IMAGE'
 }
 
-export type ItemInfoFragment = { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null };
+export type ItemInfoFragment = { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null };
+
+export type GetItemByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetItemByIdQuery = { __typename?: 'Query', getItemById: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
 
 export type GetItemsQueryVariables = Exact<{
   searchText?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetItemsQuery = { __typename?: 'Query', getItems: Array<{ __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null }> };
+export type GetItemsQuery = { __typename?: 'Query', getItems: Array<{ __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null }> };
 
 export type CreateItemMutationVariables = Exact<{
   input: CreateItemInput;
 }>;
 
 
-export type CreateItemMutation = { __typename?: 'Mutation', createItem: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
+export type CreateItemMutation = { __typename?: 'Mutation', createItem: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
 
 export type UpdateItemMutationVariables = Exact<{
   input: UpdateItemInput;
 }>;
 
 
-export type UpdateItemMutation = { __typename?: 'Mutation', updateItem: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
+export type UpdateItemMutation = { __typename?: 'Mutation', updateItem: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
 
 export type ItemImageInfoFragment = { __typename?: 'ItemImage', id: string, link: string, alt?: string | null };
 
-export type OrderInfoFragment = { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null };
+export type OrderInfoFragment = { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null };
 
-export type PaginatedOrderInfoFragment = { __typename?: 'Orders', total: number, hasMore: boolean, page: number, pages: number, items: Array<{ __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null }> };
+export type PaginatedOrderInfoFragment = { __typename?: 'Orders', total: number, hasMore: boolean, page: number, pages: number, items: Array<{ __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null }> };
 
 export type GetPaginatedOrdersQueryVariables = Exact<{
   options: CommonFilterOptionInput;
@@ -249,14 +262,14 @@ export type GetPaginatedOrdersQueryVariables = Exact<{
 }>;
 
 
-export type GetPaginatedOrdersQuery = { __typename?: 'Query', getPaginatedOrders: { __typename?: 'Orders', total: number, hasMore: boolean, page: number, pages: number, items: Array<{ __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null }> } };
+export type GetPaginatedOrdersQuery = { __typename?: 'Query', getPaginatedOrders: { __typename?: 'Orders', total: number, hasMore: boolean, page: number, pages: number, items: Array<{ __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null }> } };
 
 export type GetOrderByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type GetOrderByIdQuery = { __typename?: 'Query', getOrderById: { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null } };
+export type GetOrderByIdQuery = { __typename?: 'Query', getOrderById: { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null } };
 
 export type CalculateTotalPriceQueryVariables = Exact<{
   input: PlaceOrderInput;
@@ -275,9 +288,9 @@ export type CreateOrderMutationVariables = Exact<{
 }>;
 
 
-export type CreateOrderMutation = { __typename?: 'Mutation', createOrder: { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null } };
+export type CreateOrderMutation = { __typename?: 'Mutation', createOrder: { __typename?: 'Order', id: string, referenceNumber: string, totalPrice: number, createdAt: any, status: string, placedAt: any, orderDetails?: Array<{ __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } }> | null } };
 
-export type OrderDetailInfoFragment = { __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
+export type OrderDetailInfoFragment = { __typename?: 'OrderDetail', id: string, quantity: number, unitPrice: number, item: { __typename?: 'Item', id: string, code: string, name: string, description?: string | null, price: number, currency: string, images?: Array<{ __typename?: 'ItemImage', id: string, link: string, alt?: string | null }> | null } };
 
 export type SignedUrlInfoFragment = { __typename?: 'SignedUrl', signedUrl?: string | null };
 
@@ -297,6 +310,7 @@ export const ItemImageInfoFragmentDoc = gql`
     `;
 export const ItemInfoFragmentDoc = gql`
     fragment ItemInfo on Item {
+  id
   code
   name
   description
@@ -346,6 +360,41 @@ export const SignedUrlInfoFragmentDoc = gql`
   signedUrl
 }
     `;
+export const GetItemByIdDocument = gql`
+    query getItemById($id: String!) {
+  getItemById(id: $id) {
+    ...ItemInfo
+  }
+}
+    ${ItemInfoFragmentDoc}`;
+
+/**
+ * __useGetItemByIdQuery__
+ *
+ * To run a query within a React component, call `useGetItemByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetItemByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetItemByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetItemByIdQuery(baseOptions: Apollo.QueryHookOptions<GetItemByIdQuery, GetItemByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetItemByIdQuery, GetItemByIdQueryVariables>(GetItemByIdDocument, options);
+      }
+export function useGetItemByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetItemByIdQuery, GetItemByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetItemByIdQuery, GetItemByIdQueryVariables>(GetItemByIdDocument, options);
+        }
+export type GetItemByIdQueryHookResult = ReturnType<typeof useGetItemByIdQuery>;
+export type GetItemByIdLazyQueryHookResult = ReturnType<typeof useGetItemByIdLazyQuery>;
+export type GetItemByIdQueryResult = Apollo.QueryResult<GetItemByIdQuery, GetItemByIdQueryVariables>;
 export const GetItemsDocument = gql`
     query getItems($searchText: String) {
   getItems(searchText: $searchText) {

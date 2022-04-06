@@ -1,9 +1,12 @@
 ## Environment Setup
 
 ### Windows
+- With Visual Studio
+  - [ ] Install Android Emulator component from Visual Studio Installer
 
-- [ ] Android Studio
-- [ ] Java JDK 11
+- Without Visual Studio
+  - [ ] Android Studio
+  - [ ] Java JDK 11
 
 ### MacOS
 
